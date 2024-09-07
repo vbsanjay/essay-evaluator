@@ -1,0 +1,23 @@
+<!-- feedback/essay_feedback.html -->
+{% extends "index.html" %}
+{% block content %}
+
+<h1>Essay Feedback</h1>
+
+<h2>{{ essay.title }}</h2>
+
+<h3>Evaluation Results:</h3>
+
+<p><strong>Spelling Errors Count:</strong> {{ feedback.spelling_errors_count }}</p>
+
+<h4>Spelling Errors:</h4>
+<ul>
+    {% for error in feedback.spelling_errors %}
+    <li>{{ error.word }} (Start: {{ error.start_index }}, End: {{ error.end_index }})</li>
+    {% endfor %}
+</ul>
+
+<p><strong>Relevance to Title:</strong> {{ feedback.related_to_title }}</p>
+<p><strong>Essay Score:</strong> {{ feedback.essay_score }} / 10</p>
+
+{% endblock %}
