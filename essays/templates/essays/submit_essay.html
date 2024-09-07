@@ -1,0 +1,53 @@
+{% extends 'index.html' %}
+{% block content %}
+<p class="subtitle">Instantly evaluate your essay by finding spelling errors, content quality and overall score 📝</p>
+    
+<div class="container">
+    <form method="POST">
+        {% csrf_token %}
+        <div class="input-box">
+            <!-- <label for="essay-title">{{ form.title.label_tag }}</label> -->
+            <label for="essay-title">Title</label>
+            {{ form.title }}
+            <!-- <input type="text" id="essay-title" name="essay-title" placeholder="Enter your essay title" required> -->
+        </div>
+        
+        <div class="input-box">
+            <!-- <label for="essay-content"> {{ form.body.label_tag }}</label> -->
+            <label for="essay-content">Essay</label>
+            {{ form.body }}
+            <!-- <textarea id="essay-content" name="essay-content" placeholder="Enter your essay here" required></textarea> -->
+            <div class="word-count">0/500 words</div>
+        </div>
+        
+        <input type="submit" class="submit-button" value="Evaluate Essay">
+    </form>
+</div>
+
+<script>
+    const essayContent = document.getElementById('essay-content');
+    const wordCount = document.querySelector('.word-count');
+    const submitButton = document.querySelector('.submit-button');
+    const MAX_WORDS = 500;
+
+    function updateWordCount() {
+        const words = essayContent.value.match(/\S+/g) || [];
+        const count = words.length;
+        wordCount.textContent = `${count}/${MAX_WORDS} words`;
+
+        if (count > MAX_WORDS) {
+            submitButton.disabled = true;
+            submitButton.title = `Maximum word limit of ${MAX_WORDS} exceeded`;
+        } else {
+            submitButton.disabled = false;
+            submitButton.title = '';
+        }
+    }
+
+    essayContent.addEventListener('input', updateWordCount);
+    updateWordCount();  // Initialize word count on page load
+</script>
+
+</script>
+
+{% endblock %}
