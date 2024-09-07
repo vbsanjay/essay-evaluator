@@ -1,23 +1,91 @@
-<!-- feedback/essay_feedback.html -->
 {% extends "index.html" %}
+{% load static %}
+
 {% block content %}
+<p class="text-center text-white mb-4 fs-5">Please find your AI generated feedback below ✨</p>
+<div class="container p-0">
+    <!-- Box with desired styling -->
+    <div class="box p-4">
+        <h2 class="card-title text-center text-white fw-bold mb-4">{{ essay.title }}</h2>
+        <div class="card-body">
+            <div class="alert alert-info mb-4">
+                Spelling Errors Count: {{ feedback.spelling_errors_count }}
+            </div>
 
-<h1>Essay Feedback</h1>
+            {% if feedback.spelling_errors %}
+            <div class="mb-4">
+                <h4>Spelling Errors:</h4>
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>Word</th>
+                                <th>Start</th>
+                                <th>End</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for error in feedback.spelling_errors %}
+                            <tr>
+                                <td>{{ error.word }}</td>
+                                <td>{{ error.start_index }}</td>
+                                <td>{{ error.end_index }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            {% endif %}
 
-<h2>{{ essay.title }}</h2>
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">Relevance to Title</h4>
+                            <p class="card-text">{{ feedback.related_to_title }}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">Essay Score</h4>
+                            <p class="card-text">
+                                <span class="display-4 text-success">{{ feedback.essay_score }}</span>
+                                <span class="text-muted">/ 10</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-<h3>Evaluation Results:</h3>
+<style>
+    body {
+        background: linear-gradient(135deg, #00cea8 0%, #bf61ff 100%);
+        min-height: 100vh;
+    }
 
-<p><strong>Spelling Errors Count:</strong> {{ feedback.spelling_errors_count }}</p>
+    .box {
+        background-color: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        border-radius: 15px; /* Rounded corners for the box */
+    }
 
-<h4>Spelling Errors:</h4>
-<ul>
-    {% for error in feedback.spelling_errors %}
-    <li>{{ error.word }} (Start: {{ error.start_index }}, End: {{ error.end_index }})</li>
-    {% endfor %}
-</ul>
+    .card-title.text-white {
+        text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
 
-<p><strong>Relevance to Title:</strong> {{ feedback.related_to_title }}</p>
-<p><strong>Essay Score:</strong> {{ feedback.essay_score }} / 10</p>
-
+    .table-responsive {
+        max-height: 300px;
+        overflow-y: auto;
+    }
+    .container {
+        padding: 0; /* Remove padding from the container */
+    }
+</style>
 {% endblock %}
