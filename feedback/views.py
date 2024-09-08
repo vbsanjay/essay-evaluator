@@ -2,14 +2,15 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse
 import openai
 import json
-from decouple import config
-
+import os
+from dotenv import load_dotenv
 from essays.models import Essay
 from .models import Feedback, SpellingError
 
+load_dotenv()
 
 def evaluate_essay_openAI_API(essay_text):
-    openai.api_key = config('OPENAI_API_SECRET_KEY')  # Replace with your actual API key
+    openai.api_key = os.getenv('OPENAI_API_SECRET_KEY')  # Replace with your actual API key
     response = openai.ChatCompletion.create(
         model="gpt-4o-mini-2024-07-18",  # Choose the appropriate model
         messages=[
