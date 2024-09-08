@@ -3,7 +3,7 @@
     <!-- Container wrapper -->
     <div class="container-fluid">
         <!-- Brand/logo -->
-        <a class="navbar-brand" href="#">Essay Evaluator</a>
+        <a href="{% url 'submit-essay' %}" class="navbar-brand">Essay Evaluator</a>
 
         <!-- Toggle button (Hamburger menu) -->
         <button
@@ -24,7 +24,7 @@
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <!-- Evaluate Button -->
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Evaluate</a>
+                    <a href="{% url 'submit-essay' %}" class="nav-link" >Evaluate</a>
                 </li>
 
                 <!-- Feedbacks Button -->
