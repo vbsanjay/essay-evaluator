@@ -1,0 +1,13 @@
+{
+    "builds": [{
+        "src": "EssayEvaluator/wsgi.py",
+        "use": "@vercel/python",
+        "config": { "maxLambdaSize": "15mb", "runtime": "3.11.7" }
+    }],
+    "routes": [
+        {
+            "src": "/(.*)",
+            "dest": "EssayEvaluator/wsgi.py"
+        }
+    ]
+}
