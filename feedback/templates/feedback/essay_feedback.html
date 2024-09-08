@@ -9,33 +9,35 @@
         <h2 class="card-title text-center text-white fw-bold mb-4">{{ essay.title }}</h2>
         <div class="card-body">
             <div class="alert alert-info mb-4">
-                Spelling Errors Count: {{ feedback.spelling_errors_count }}
+                Spelling Errors Count: <strong>{{ spelling_errors_count }}</strong>
             </div>
 
-            {% if feedback.spelling_errors %}
-            <div class="mb-4">
+            {% if spelling_error %}
+            <div class="mb-4 text-white">
                 <h4>Spelling Errors:</h4>
                 <div class="table-responsive">
-                    <table class="table table-striped table-hover">
+                    <table class="table table-borderless table-striped table-hover table-rounded">
                         <thead>
-                            <tr>
+                            <tr class="custom-table-heading">
                                 <th>Word</th>
-                                <th>Start</th>
-                                <th>End</th>
+                                <th>Start Index</th>
+                                <th>End Index</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {% for error in feedback.spelling_errors %}
+                            {% for error in spelling_error %}
                             <tr>
                                 <td>{{ error.word }}</td>
-                                <td>{{ error.start_index }}</td>
-                                <td>{{ error.end_index }}</td>
+                                <td>{{ error.start }}</td>
+                                <td>{{ error.end }}</td>
                             </tr>
                             {% endfor %}
                         </tbody>
                     </table>
                 </div>
             </div>
+            {% else %}
+            <p> You have no spelling error 🎉</p>
             {% endif %}
 
             <div class="row">
@@ -43,7 +45,13 @@
                     <div class="card">
                         <div class="card-body">
                             <h4 class="card-title">Relevance to Title</h4>
-                            <p class="card-text">{{ feedback.related_to_title }}</p>
+                            <p class="card-text">
+                                {% if content_relevance %}
+                                <span class="display-4 text-success"> Yes 👍 </span>
+                                {% else %}
+                                <span class="display-4 text-danger"> No 👎 </span>
+                                {% endif %}
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -52,7 +60,11 @@
                         <div class="card-body">
                             <h4 class="card-title">Essay Score</h4>
                             <p class="card-text">
-                                <span class="display-4 text-success">{{ feedback.essay_score }}</span>
+                                {% if score > 5 %}
+                                <span class="display-4 text-success">{{ score }}</span>
+                                {% else %}
+                                <span class="display-4 text-danger">{{ score }}</span>
+                                {% endif %}
                                 <span class="text-muted">/ 10</span>
                             </p>
                         </div>
@@ -69,11 +81,20 @@
         min-height: 100vh;
     }
 
+    .custom-table-heading{
+        background: linear-gradient(135deg, #00cea8 0%, #bf61ff 100%);
+        color: azure;
+    }
+
     .box {
         background-color: rgba(255, 255, 255, 0.1);
         backdrop-filter: blur(10px);
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         border-radius: 15px; /* Rounded corners for the box */
+    }
+
+    .card {
+    background-color: rgba(255, 255, 255, 0.9); /* White with 80% opacity */
     }
 
     .card-title.text-white {
@@ -84,8 +105,17 @@
         max-height: 300px;
         overflow-y: auto;
     }
+    
     .container {
         padding: 0; /* Remove padding from the container */
     }
+
+    .table-rounded {
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+
+
 </style>
 {% endblock %}
