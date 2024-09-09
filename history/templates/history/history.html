@@ -22,7 +22,7 @@
                 <td>{{ essay.title }}</td>
                 <td>{{ essay.feedback.score }}</td> <!-- Assuming feedback has a score field -->
                 <td>
-                    <a href="{#}" class="btn btn-info">
+                    <a href="{% url 'detailed-report' essay.id %}" class="btn btn-info">
                         <i class="fas fa-file-alt" style="font-size: 20px;"></i>
                     </a>
                 </td>
