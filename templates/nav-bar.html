@@ -24,16 +24,15 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <!-- Right-aligned buttons -->
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                {% if request.user.is_authenticated %}
                 <!-- Evaluate Button -->
                 <li class="nav-item">
                     <a href="{% url 'submit-essay' %}" class="nav-link" >Evaluate</a>
                 </li>
-
                 <!-- Feedbacks Button -->
                 <li class="nav-item">
                     <a class="nav-link" href="#">Feedbacks</a>
                 </li>
-
                 <!-- Account Dropdown -->
                 <li class="nav-item dropdown">
                     <a
@@ -53,6 +52,42 @@
                         <li><a class="dropdown-item" href="{% url 'account_logout' %}">Logout</a></li>
                     </ul>
                 </li>
+                {% else %}
+                <li class="nav-item">
+                    <a href="#" id="nav-evaluate" class="nav-link no-hover" >Evaluate</a>
+                </li>
+                <!-- Feedbacks Button -->
+                <li class="nav-item">
+                    <a id="nav-feedback" class="nav-link no-hover" href="#">Feedbacks</a>
+                </li>
+                <!-- Account Dropdown -->
+                <li class="nav-item dropdown">
+                    <a
+                        class="nav-link no-hover dropdown-toggle"
+                        href="#"
+                        id="navbarDropdown"
+                        role="button"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false"
+                    >
+                        Account
+                    </a>
+                </li>
+                <script>
+                    document.getElementById('nav-evaluate').addEventListener('click', function(event) {
+                        event.preventDefault(); 
+                        alert('Please login to access evaluate.');
+                    });
+                    document.getElementById('nav-feedback').addEventListener('click', function(event) {
+                        event.preventDefault(); 
+                        alert('Please logi to access feedback.');
+                    });
+                    document.getElementById('navbarDropdown').addEventListener('click', function(event) {
+                        event.preventDefault(); 
+                        alert('Please login to access account.');
+                    });
+                </script>
+                {% endif %}
             </ul>
         </div>
         <!-- Collapsible content -->
@@ -94,5 +129,10 @@
 
     .dropdown-menu {
         border-radius: 5px;
+    }
+
+    .no-hover:active, .no-hover:focus {
+        color: #fffffc !important; /* Keeps the color the same after clicking */
+        outline: none !important;  /* Removes focus outline if needed */
     }
 </style>
