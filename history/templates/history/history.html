@@ -1,0 +1,52 @@
+{% extends 'index.html' %} <!-- Or your main template -->
+
+{% load static %} <!-- For loading static files -->
+
+{% block content %}
+<p class="text-center text-white mb-4 fs-5">Please find your submissions below ⌛️</p>
+<div class="container">
+    <!-- <h4 class="my-4" style="color: white;">Please find the history of your submissions below ⌛️</h4> -->
+    <table class="table table-striped table-light table-rounded">
+        <thead>
+            <tr>
+                <th scope="col">Sl. No</th>
+                <th scope="col">Essay Title</th>
+                <th scope="col">Essay Score</th>
+                <th scope="col">Detailed Report</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for essay in essays %}
+            <tr>
+                <th scope="row">{{ forloop.counter }}</th>
+                <td>{{ essay.title }}</td>
+                <td>{{ essay.feedback.score }}</td> <!-- Assuming feedback has a score field -->
+                <td>
+                    <a href="{#}" class="btn btn-info">
+                        <i class="fas fa-file-alt" style="font-size: 20px;"></i>
+                    </a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="4" class="text-center">No essays submitted yet.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<style>
+    .table-rounded {
+        border-radius: 10px;
+        overflow: hidden;
+    }
+    .container {
+    background-color: transparent; /* Ensure container background is transparent */
+    box-shadow: 0 0px 0px rgba(0, 0, 0, 0.0);
+    padding: 0; 
+  }
+</style>
+
+{% endblock content %}
+
