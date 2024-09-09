@@ -6,6 +6,7 @@ import os
 from dotenv import load_dotenv
 from essays.models import Essay
 from .models import Feedback, SpellingError
+from django.contrib.auth.decorators import login_required
 
 load_dotenv()
 
@@ -63,7 +64,7 @@ def create_spelling_error(feedback, feedback_json):
             feedback=feedback 
         )
 
-# Create your views here.
+@login_required(login_url='account_login')
 def create_feedback(request, essay_id):
      # Retrieve the essay using the provided essay_id
     essay = get_object_or_404(Essay, id=essay_id)
@@ -88,7 +89,7 @@ def create_feedback(request, essay_id):
     create_spelling_error(feedback, feedback_json)
     return redirect(reverse("feedback", kwargs={"feedback_id": feedback.id}))
 
-# get feedback
+@login_required(login_url='account_login')
 def feedback(request, feedback_id):
     feedback = get_object_or_404(Feedback, id=feedback_id)
 
