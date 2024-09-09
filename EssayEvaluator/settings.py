@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     "essays",
     "feedback",
     "history",
+    "profiles",
 ]
 
 
