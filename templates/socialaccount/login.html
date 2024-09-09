@@ -1,0 +1,75 @@
+{% extends "index.html" %}
+{% load i18n %}
+{% load allauth %}
+{% block head_title %}
+    {% trans "Sign In" %}
+{% endblock head_title %}
+
+
+{% block content %}
+<div class="container">    
+    <div class="social-login-box">
+        {% if process == "connect" %}
+            <h1 class="h4 mb-3">
+                {% blocktrans with provider.name as provider %}Connect {{ provider }}{% endblocktrans %}
+            </h1>
+            <p class="mb-4">
+                {% blocktrans with provider.name as provider %}You are about to connect a new third-party account from {{ provider }}.{% endblocktrans %}
+            </p>
+        {% else %}
+            <h1 class="h4 mb-3">
+                {% blocktrans with provider.name as provider %}Sign In Via {{ provider }}{% endblocktrans %}
+            </h1>
+            <p class="mb-4">
+                {% blocktrans with provider.name as provider %}You are about to sign in using a third-party account from {{ provider }}.{% endblocktrans %}
+            </p>
+        {% endif %}
+        {% element form method="post" no_visible_fields=True %}
+            {% slot actions %}
+                {% csrf_token %}
+                <button type="submit" class="btn-custom">
+                    {% trans "Continue" %}
+                </button>
+            {% endslot %}
+        {% endelement %}
+    </div>
+</div>
+
+<style>
+    .container{
+        background-color: transparent; /* Ensure container background is transparent */
+        box-shadow: 0 0px 0px rgba(0, 0, 0, 0.0); 
+    }
+    /* Custom styles for social login page */
+    .social-login-box {
+        background-color: #ffffff;
+        border: 1px solid #dee2e6;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        padding: 30px;
+        max-width: 400px;
+        margin: auto;
+        text-align: center;
+    }
+
+    .btn-custom {
+        height: 40px;
+        line-height: 40px;
+        font-size: 16px;
+        font-weight: bold;
+        color: #ffffff;
+        background-color: #007bff;
+        border: 1px solid #007bff;
+        border-radius: 4px;
+        text-align: center;
+        text-decoration: none;
+        cursor: pointer;
+        padding: 0 20px;
+    }
+
+    .btn-custom:hover {
+        background-color: #0056b3;
+        border-color: #004085;
+    }
+</style>
+{% endblock content %}
