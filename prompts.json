@@ -1,0 +1,10 @@
+{
+    "evaluation_prompt": "Evaluate the following essay and provide feedback on the quality, spelling errors, relevance to the title, and score out of 10:",
+    "description_prompt": "Provides structured feedback for the essay",
+    "spelling_errors_count_prompt": "Number of spelling mistakes in the essay",
+    "spelling_error_word_prompt": "The misspelled word",
+    "spelling_error_start_index_prompt": "Start index of the word",
+    "spelling_error_end_index_prompt": "End index of the word",
+    "content_relevance_prompt": "Is the essay content related to the title?",
+    "essay_score_prompt": "Score out of 10 for the essay"
+}

@@ -61,6 +61,8 @@ SOCIALACCOUNT_PROVIDERS = {
     }
 }
 
+PROMPTS_FILE_PATH = os.path.join(BASE_DIR, 'prompts.json')
+
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",

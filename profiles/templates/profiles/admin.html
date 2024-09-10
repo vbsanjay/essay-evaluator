@@ -1,0 +1,42 @@
+{% extends 'index.html' %}
+{% block content %}
+<div class="container mt-4">
+    <h1 class="mb-4">Edit Prompts</h1>
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="evaluation_prompt">Evaluation Prompt</label>
+            <textarea name="evaluation_prompt" id="evaluation_prompt" class="form-control" rows="5">{{ form.evaluation_prompt.value }}</textarea>
+        </div>
+        <div class="form-group">
+            <label for="description_prompt">Description Prompt</label>
+            <textarea name="description_prompt" id="description_prompt" class="form-control" rows="3">{{ form.description_prompt.value }}</textarea>
+        </div>
+        <div class="form-group">
+            <label for="spelling_errors_count_prompt">Spelling Errors Count Prompt</label>
+            <textarea name="spelling_errors_count_prompt" id="spelling_errors_count_prompt" class="form-control" rows="3">{{ form.spelling_errors_count_prompt.value }}</textarea>
+        </div>
+        <div class="form-group">
+            <label for="spelling_error_word_prompt">Spelling Error Word Prompt</label>
+            <textarea name="spelling_error_word_prompt" id="spelling_error_word_prompt" class="form-control" rows="3">{{ form.spelling_error_word_prompt.value }}</textarea>
+        </div>
+        <div class="form-group">
+            <label for="spelling_error_start_index_prompt">Spelling Error Start Index Prompt</label>
+            <textarea name="spelling_error_start_index_prompt" id="spelling_error_start_index_prompt" class="form-control" rows="3">{{ form.spelling_error_start_index_prompt.value }}</textarea>
+        </div>
+        <div class="form-group">
+            <label for="spelling_error_end_index_prompt">Spelling Error End Index Prompt</label>
+            <textarea name="spelling_error_end_index_prompt" id="spelling_error_end_index_prompt" class="form-control" rows="3">{{ form.spelling_error_end_index_prompt.value }}</textarea>
+        </div>
+        <div class="form-group">
+            <label for="content_relevance_prompt">Content Relevance Prompt</label>
+            <textarea name="content_relevance_prompt" id="content_relevance_prompt" class="form-control" rows="3">{{ form.content_relevance_prompt.value }}</textarea>
+        </div>
+        <div class="form-group">
+            <label for="essay_score_prompt">Essay Score Prompt</label>
+            <textarea name="essay_score_prompt" id="essay_score_prompt" class="form-control" rows="3">{{ form.essay_score_prompt.value }}</textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Save Changes</button>
+    </form>
+</div>
+{% endblock content %}
