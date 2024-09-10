@@ -50,6 +50,8 @@ INSTALLED_APPS = [
     "profiles",
 ]
 
+#65052451665-2l6vvhji74qs8vn6elkfp1r0bmcg10oq.apps.googleusercontent.com 
+#
 
 SOCIALACCOUNT_PROVIDERS = {
     'google': {
@@ -103,8 +105,12 @@ WSGI_APPLICATION = "EssayEvaluator.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        "ENGINE": "django.db.backends.postgresql",
+        "HOST": "aws-0-us-east-1.pooler.supabase.com",
+        "NAME": "postgres",
+        "USER": "postgres.nlntecqiskhzgcucnnvd",
+        "PASSWORD": "Hrun*102@815",
+        "PORT": "6543",
     }
 }
 

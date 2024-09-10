@@ -1,5 +1,5 @@
 {
-    "evaluation_prompt": "Evaluate the following essay and provide feedback on the quality, spelling errors, relevance to the title, and score out of 10:",
+    "evaluation_prompt": "Evaluate the following essay and provide feedback on the quality, spelling errors, relevance to the title, and score out of 10:\n\n{essay_text}",
     "description_prompt": "Provides structured feedback for the essay",
     "spelling_errors_count_prompt": "Number of spelling mistakes in the essay",
     "spelling_error_word_prompt": "The misspelled word",
